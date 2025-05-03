@@ -31,6 +31,9 @@ public:
     BST(BSTNode* n);
     ~BST();
 
+    // for testing purposes
+    void setCurr(BSTNode* node) {curr = node;}
+
     BSTNode* getRoot() {return root;};
     BSTNode* getCurr() {return curr;};
     bool saveToBinary(const std::string& fileName);
@@ -40,7 +43,6 @@ public:
     void printRiver();
     void updatePosition();
     std::string navigateRiver();
-    
 };
 
 #endif
