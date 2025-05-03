@@ -38,7 +38,7 @@ public:
     BSTNode* getCurr() {return curr;};
     bool saveToBinary(const std::string& fileName);
     bool loadFromBinary(const std::string& fileName);
-    void printNodeInfo();
+    std::string printNodeInfo();
     void setupRiver();
     void printRiver();
     void updatePosition();
