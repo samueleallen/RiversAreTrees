@@ -200,13 +200,14 @@ void BST::printRiver(BSTNode* n, int upstream, bool mouth, char branch) {
         for(int i = 0; i < upstream; i++) {
             std::cout << "              ";
         }
-        
+        // if the current node is the mouth of the river
         if(mouth) {
             std::cout << "--- ";
         }
         else if (branch == 'L') {
             std::cout << "\\--- ";
         }
+        // right branch 
         else {
             std::cout << "/--- ";
         }
