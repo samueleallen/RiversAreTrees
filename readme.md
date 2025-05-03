@@ -7,6 +7,6 @@ CPSC 223
 ## River_testing.cpp
 To execute the testing file, please run the commands:
 ```
-g++ -std=c++11 River_testing.cpp BST.cpp -o testing_river
-./testing_river
+g++ -std=c++11 River_testing.cpp BST.cpp -o test_river
+./test_river
 ```
