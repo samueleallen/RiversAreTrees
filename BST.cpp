@@ -199,7 +199,7 @@ void BST::printRiver(BSTNode* node, bool isLeft, std::string indent) {
         else {
             std::cout << "└──";
         }
-        // print the value of the current node
+        // print the name of the current node
         std::cout << node->name << std::endl;
 
         // recursively call each level of the tree w/ its river information
