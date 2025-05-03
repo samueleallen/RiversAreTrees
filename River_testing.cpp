@@ -2,7 +2,7 @@
 #include <cassert>
 
 bool test_Info_Print(){
-    // test cases: mouth is current node, dam is current node, tributary is current node, continuation of the columbia river is current node
+    // test cases: mouth is current node, dam is current node, tributary is current node, continuation of the Columbia river is current node
     BST riverTree1, riverTree2, riverTree3, riverTree4;
 
     BSTNode* mouth = new BSTNode("Columbia River Mouth", "Pacific Ocean, at Clatsop County, Oregon / Pacific County, Washington");
@@ -22,6 +22,7 @@ bool test_Info_Print(){
     riverTree3.setCurr(white_salmon);
     BSTNode* curr3 = riverTree3.getCurr();
 
+    // set current node to continuation of the Columbia river
     riverTree4.setCurr(river_contd);
     BSTNode* curr4 = riverTree4.getCurr();
 
