@@ -51,7 +51,7 @@ std::string BST::printNodeInfo() {
     if (curr) {
         return "Location: " + curr->name + "\nDescription: " + curr->description;
     }
-    std::cout << "\nLocation: " << curr->name << std::endl;
+    std::cout << "Location: " << curr->name << std::endl;
     std::cout << "Description: " << curr->description << std::endl;
 
     // curr is nullptr
