@@ -35,6 +35,14 @@ BST::~BST() {
 
 }
 
+std::string BST::getInput(){
+    std::string userInput;
+    std::cin >> userInput;
+    for (int i = 0; i < userInput.length(); i++)
+        userInput[i] = toupper(userInput[i]);
+    return userInput;
+}
+
 /*
 Prints the name and description of a node in our BST
 */
@@ -98,7 +106,7 @@ std::string BST::navigateRiver() {
             if (curr->right != nullptr) {
                 std::cout << "Insert (R) to travel to the right and arrive at " << curr->right->name << std::endl;
             }
-            std::cin >> userInput;
+            userInput = getInput();
         }
         return userInput;
     } 
@@ -108,7 +116,7 @@ std::string BST::navigateRiver() {
             std::cout << "Insert (L) to travel to the left and arrive at " << curr->left->name << std::endl;
             std::cout << "Insert (R) to travel to the right and arrive at " << curr->right->name << std::endl;
             std::cout << "Insert (B) to travel backwards and arrive back at " << curr->parent->name << std::endl;
-            std::cin >> userInput;
+            userInput = getInput();
         }
         return userInput;
     }
@@ -118,7 +126,7 @@ std::string BST::navigateRiver() {
             std::cout << "Insert (L) to travel to the left and arrive at " << curr->left->name << std::endl;
             std::cout << "Cannot travel right." << std::endl;
             std::cout << "Insert (B) to travel backwards and arrive back at " << curr->parent->name << std::endl;
-            std::cin >> userInput;
+            userInput = getInput();
         }
         return userInput;
     }
@@ -128,7 +136,7 @@ std::string BST::navigateRiver() {
             std::cout << "Cannot travel left." << std::endl;
             std::cout << "Insert (R) to travel to the right and arrive at " << curr->right->name << std::endl;
             std::cout << "Insert (B) to travel backwards and arrive back at " << curr->parent->name << std::endl;
-            std::cin >> userInput;
+            userInput = getInput();
         }
         return userInput;
     }
@@ -138,7 +146,7 @@ std::string BST::navigateRiver() {
             std::cout << "Cannot travel left." << std::endl;
             std::cout << "Cannot travel right." << std::endl;
             std::cout << "Insert (B) to travel backwards and arrive back at " << curr->parent->name << std::endl;
-            std::cin >> userInput;
+            userInput = getInput(); 
         }
         return userInput;
     }

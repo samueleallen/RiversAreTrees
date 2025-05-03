@@ -19,7 +19,7 @@ class BST {
 private:
     BSTNode* root;
     BSTNode* curr;
-
+    std::string getInput();
     void insertNode(BSTNode* n, BSTNode* parent, bool insertLeft);
 
 public:
