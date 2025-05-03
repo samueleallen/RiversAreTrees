@@ -1,5 +1,6 @@
 #include "BST.hpp"
 #include <iostream>
+#include <fstream>
 
 BSTNode::BSTNode() {
     name = "Default Name";
@@ -49,6 +50,105 @@ Prints the name and description of a node in our BST
 void BST::printNodeInfo() {
     std::cout << "Location: " << curr->name << std::endl;
     std::cout << "Description: " << curr->description << std::endl;
+}
+
+/*
+Saves the entire tree representing our river to a binary file (Includes information about name and description)
+*/
+bool BST::saveToBinary(const std::string& filename) {
+    std::ofstream outFile(filename, std::ios::binary);
+    if (!outFile) {
+        return false;
+    }
+
+    saveBST(root, outFile);
+    outFile.close();
+    return true;
+}
+
+/*
+Helper function to write a node and recursively saves its children to a binary file
+*/
+void BST::saveBST(BSTNode* n, std::ofstream& outFile) {
+    if (n == nullptr) {
+        // Write a flag for null nodes
+        bool isNull = true;
+        outFile.write(reinterpret_cast<const char*>(&isNull), sizeof(bool));
+        return;
+    }
+
+    // Write flag for non-null nodes
+    bool isNull = false;
+    outFile.write(reinterpret_cast<const char*>(&isNull), sizeof(bool));
+
+    // Write name of node to binary file
+    size_t nameLength = n->name.length();
+    outFile.write(reinterpret_cast<const char*>(&nameLength), (sizeof(size_t)));
+    outFile.write(n->name.c_str(), nameLength);
+
+    // Write description of node to binary file
+    size_t descLength = n->description.length();
+    outFile.write(reinterpret_cast<const char*>(&descLength), (sizeof(size_t)));
+    outFile.write(n->description.c_str(), descLength);
+
+    // Recursively save both left and right subtrees
+    saveBST(n->left, outFile);
+    saveBST(n->right, outFile);
+}
+
+/*
+Loads a BST from a binary file
+*/
+bool BST::loadFromBinary(const std::string& filename) {
+    std::ifstream inFile(filename, std::ios::binary);
+    if (!inFile) {
+        return false;
+    }
+
+    // Load tree
+    root = loadBST(inFile);
+    curr = root;
+    inFile.close();
+    return true;
+}
+
+/*
+Helper function to read a node and recursively readts its children from a binary file
+*/
+BSTNode* BST::loadBST(std::ifstream& inFile) {
+    // Read any null flags
+    bool isNull;
+    inFile.read(reinterpret_cast<char*>(&isNull), sizeof(bool));
+
+    if (isNull) {
+        return nullptr;
+    }
+
+    // Read name of node
+    size_t nameLength;
+    inFile.read(reinterpret_cast<char*>(&nameLength), sizeof(size_t));
+    std::string name(nameLength, ' ');
+    inFile.read(&name[0], nameLength);
+
+    // Read description of node
+    size_t descLength;
+    inFile.read(reinterpret_cast<char*>(&descLength), sizeof(size_t));
+    std::string description(descLength, ' ');
+    inFile.read(&description[0], descLength);
+
+    // Create node
+    BSTNode* n = new BSTNode(name, description);
+
+    // Recursively load left and right subtree
+    n->left = loadBST(inFile);
+    if (n->left != nullptr) {
+        n->left->parent = n;
+    }
+    n->right = loadBST(inFile);
+    if (n->right != nullptr) {
+        n->right->parent = n;
+    }
+    return n;
 }
 
 /*

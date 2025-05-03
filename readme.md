@@ -1,6 +1,6 @@
-# AVL Tree
+# Rivers Are Trees
 
-Author: Sam Allen  
+Authors: Alex, Kaili, Xavier, & Sam
 CPSC 223  
 2 May 2025  
 
