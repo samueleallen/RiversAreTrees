@@ -6,6 +6,8 @@ int main() {
 
     Columbia_River.setupRiver();
 
+    Columbia_River.printRiver();
+
     Columbia_River.updatePosition();
     
     
