@@ -180,33 +180,34 @@ void BST::printRiver() {
 
 /*
 Prints river information captured in nodes in our binary search tree*/
-void BST::printRiver(BSTNode* n, int upstream, bool mouth, char branch) {
-    if(n == nullptr) {
+void BST::printRiver(BSTNode* node, bool isLeft, std::string indent) {
+    if(node == nullptr) {
         return;
     }
-    else if (n != nullptr) {
-        printRiver(n->right, upstream + 1, false, 'R');
-        std::cout << std::endl;
+    else if (node != nullptr) {
+        std::cout << indent;
 
-        for(int i = 0; i < upstream; i++) {
-            std::cout << "              ";
+        // the current node is the mouth of the river
+        if(node == root && isLeft == false) {
+            std::cout << "* ";
         }
-        // if the current node is the mouth of the river
-        if(mouth) {
-            std::cout << "--- ";
+        // the current node is to the left child of its parent
+        else if(isLeft) {
+            std::cout << "├──";
         }
-        else if (branch == 'L') {
-            std::cout << "\\--- ";
-        }
-        // right branch 
+        // the current node is the right child of its parent
         else {
-            std::cout << "/--- ";
+            std::cout << "└──";
         }
-        std::cout << n->name << std::endl;
+        // print the value of the current node
+        std::cout << node->name << std::endl;
 
-        printRiver(n->left, upstream + 1, false, 'L');
-    } 
+        // recursively call each level of the tree w/ its river information
+        printRiver(node->left, true, indent + (isLeft ? "│   " : "    "));
+        printRiver(node->right, false, indent + (isLeft ? "│   " : "    "));
+    }
 }
+
 
 /*
 Inserts river information as nodes in our binary search tree
