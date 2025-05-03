@@ -191,7 +191,7 @@ void BST::printRiver(BSTNode* node, bool isLeft, std::string indent) {
         if(node == root && isLeft == false) {
             std::cout << "* ";
         }
-        // the current node is to the left child of its parent
+        // the current node is the left child of its parent
         else if(isLeft) {
             std::cout << "├──";
         }
