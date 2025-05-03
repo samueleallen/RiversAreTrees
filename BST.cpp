@@ -237,7 +237,18 @@ void BST::setupRiver() {
     BSTNode* river20 = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
     BSTNode* river21 = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
     BSTNode* river22 = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
-    
+    BSTNode* river23 = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
+    BSTNode* river24 = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
+    BSTNode* river25 = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
+    BSTNode* river26 = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
+    BSTNode* river27 = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
+    BSTNode* river28 = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
+    BSTNode* river29 = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
+    BSTNode* river30 = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
+    BSTNode* river31 = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
+    BSTNode* river32 = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
+    BSTNode* river33 = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
+    BSTNode* river34 = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
     // Tributaries before Bonneville Dam
     BSTNode* youngs = new BSTNode("Youngs Tributary", "Length: 43km, Basin Size: 258km^2, Average Discharge: 14.7m^3/s.");
     BSTNode* grays = new BSTNode("Grays Tributary", "Length: 48km, Basin Size: 320km^2, Average Discharge: 15.9m^3/s");
@@ -268,6 +279,21 @@ void BST::setupRiver() {
     BSTNode* mcnary_dam = new BSTNode("McNary Dam", "As with some other dams, it has two additional turbines whose purpose is to power the dam itself. That is, this dam is entirely self-sustaining.");
 
     // Now need to continue to Spokane Tributary from mcnary dam
+
+    BSTNode* walla_walla = new BSTNode("Walla Walla",   "Lewis and Clark, on their return expedition stopped at the mouth of the Walla Walla and stayed with the Walla Walla tribe for a portion of the journey");
+    BSTNode* snake = new BSTNode("Snake", "About 1,080 miles (1,740 km) long, it is the largest tributary of the Columbia River, which is the largest North American river that empties into the Pacific Ocean.");
+    BSTNode* yakima = new BSTNode("Yakima", "Lewis and Clark mention in their journals that the Chin-nâm pam (or the Lower Snake River Chamnapam Nation) called the river Tâpe têtt(also rendered Tapteete), possibly from the French tape-tête, meaning \"head hit\".");
+    BSTNode* crab_creek = new BSTNode("Crab Creek", "It is sometimes referred to as the \"longest ephemeral stream in North America\".");
+    BSTNode* wenatchee = new BSTNode("Wenatchee", "Water from the Wenatchee River and its tributaries has been diverted for irrigation since 1891, mainly for orchards.");
+    BSTNode* entiat = new BSTNode("Entiat", "The river's name is derived from the Columbia-Moses (Salishan) term, meaning \"place of grassy water\"; another source states that it was called Enteatqua which means \"Rapid Water\" or \"Rushing Water.\" The name, spelled \"Entiat\", was selected for the river in 1958 by the Chelan County Public Utility District.");
+    BSTNode* chelan = new BSTNode("Chelan", "Nearly the entire river's flow is diverted to the Lake Chelan Powerhouse, 3.9 miles (6.3 km) downstream near the river's mouth. Thus the Chelan River is almost always dry.");
+    BSTNode* methow = new BSTNode("Methow", "The Methow's watershed is characterized by relatively pristine habitats, as much of the river basin is located in national forests and wildernesses.");
+    BSTNode* okanogan = new BSTNode("Okanogan", "From Oroville the Okanogan River flows south through the Okanogan County, past Okanogan and Omak. It forms the western boundary of the Colville Indian Reservation.");
+    BSTNode* nespelem = new BSTNode("Nespelem", "It is completely contained within Okanogan County and the Colville Indian Reservation. The name \"Nespelem\" is said to come from the Indian word nesilim, meaning \"flat land\".");
+    BSTNode* sanpoil = new BSTNode("Sanpoil", "The name is from the Okanagan term [snpʕʷílx], meaning \"people of the gray country\", or \"gray as far as one can see\".");
+    BSTNode* spokane = new BSTNode("Spokane", "The Spokane River contains some of the highest concentrations of heavy metals of any river in the state, resulting from pollution coming from Lake Coeur D'Alene." );
+
+
 
     // Start at mouth of river, go to river only
     insertNode(mouth, nullptr, false);
@@ -342,5 +368,42 @@ void BST::setupRiver() {
     insertNode(river22, river21, false);
     insertNode(mcnary_dam, river22, true);
 
+    insertNode(river23,mcnary_dam,false);
     // Continue on from McNary Dam
+
+    insertNode(walla_walla,river23,true);
+    insertNode(river24,river23,false);
+
+    insertNode(snake,river24,true);
+    insertNode(river25,river24,false);
+
+    insertNode(yakima,river25,false);
+    insertNode(river26,river25,true);
+
+    insertNode(crab_creek,river26,true);
+    insertNode(river27,river26,false);
+
+    insertNode(wenatchee,river27,false);
+    insertNode(river28,river27,true);
+
+    insertNode(entiat,river28,false);
+    insertNode(river29,river28,true);
+
+    insertNode(chelan,river29,false);
+    insertNode(river30,river29,true);
+
+    insertNode(methow,river30,false);
+    insertNode(river31,river30,true);
+
+    insertNode(okanogan,river31,false);
+    insertNode(river32,river31,true);
+
+    insertNode(nespelem,river32,false);
+    insertNode(river33,river32,true);
+
+    insertNode(sanpoil,river33,false);
+    insertNode(river34,river33,true);
+
+    insertNode(spokane,river34,true);
+
 }
