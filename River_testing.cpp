@@ -1,7 +1,42 @@
 #include "BST.hpp"
-bool test_Info_Print(){
+#include <cassert>
 
-    return false;
+bool test_Info_Print(){
+    // test cases: mouth is current node, dam is current node, tributary is current node
+    BST riverTree1, riverTree2, riverTree3;
+
+    BSTNode* mouth = new BSTNode("Columbia River Mouth", "Pacific Ocean, at Clatsop County, Oregon / Pacific County, Washington");
+    BSTNode* bonneville_dam = new BSTNode("Bonneville Dam", "At the time of its construction in the 1930s it was the largest water impoundment project of its type in the nation, able to withstand flooding on an unprecedented scale");
+    BSTNode* white_salmon = new BSTNode("White Salmon Tributary", "Originating on the slopes of Mount Adams, it flows into the Columbia Gorge near the community of Underwood.");
+
+    // set current node to the root node
+    riverTree1.setCurr(mouth);
+    BSTNode* curr = riverTree1.getCurr();
+
+    // set current node to a dam
+    riverTree2.setCurr(bonneville_dam);
+    BSTNode* curr2 = riverTree2.getCurr();
+
+    // set current node to a tributary
+    riverTree3.setCurr(white_salmon);
+    BSTNode* curr3 = riverTree3.getCurr();
+
+    std::string expectedOutput1 = "Location: Columbia River Mouth\nDescription: Pacific Ocean, at Clatsop County, Oregon / Pacific County, Washington";
+    std::string expectedOutput2 = "Location: Bonneville Dam\nDescription: At the time of its construction in the 1930s it was the largest water impoundment project of its type in the nation, able to withstand flooding on an unprecedented scale";
+    std::string expectedOutput3 = "Location: White Salmon Tributary\nDescription: Originating on the slopes of Mount Adams, it flows into the Columbia Gorge near the community of Underwood.";
+
+    std::string output1 = riverTree1.printNodeInfo();
+    std::string output2 = riverTree2.printNodeInfo();
+    std::string output3 = riverTree3.printNodeInfo();
+
+    assert(curr != nullptr);
+    assert(output1 == expectedOutput1);
+    assert(curr2 != nullptr);
+    assert(output2 == expectedOutput2);
+    assert(curr3 != nullptr);
+    assert(output3 == expectedOutput3);
+
+    return true;
 }
 
 
@@ -24,14 +59,13 @@ bool test_Setup(){
 
     return false;
 }
+
 int main(){
 
-    test_Info_Print();
+    std::cout << "Info Print Test: " <<(test_Info_Print() ? "Passed" : "Failed") << std::endl;
     test_Nav_River();
     test_Update_Pos();
     test_Setup();
-
-
 
 
 
