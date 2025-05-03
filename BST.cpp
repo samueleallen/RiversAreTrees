@@ -47,9 +47,14 @@ std::string BST::getInput(){
 /*
 Prints the name and description of a node in our BST
 */
-void BST::printNodeInfo() {
-    std::cout << "Location: " << curr->name << std::endl;
-    std::cout << "Description: " << curr->description << std::endl;
+std::string BST::printNodeInfo() {
+    if (curr) {
+        std::cout << "\nLocation: " << curr->name << std::endl;
+        std::cout << "Description: " << curr->description << std::endl;
+        return "Location: " + curr->name + "\nDescription: " + curr->description;
+    }
+    // curr is nullptr
+    return "";
 }
 
 /*
