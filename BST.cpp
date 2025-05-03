@@ -188,4 +188,39 @@ void BST::setupRiver() {
 
     insertNode(mouth, nullptr, false);
     insertNode(youngs, mouth, true);
+    insertNode(grays, mouth, false);
+}
+
+void BST::printRiver() {
+    return printRiver(root, 0, true, 'M'); 
+}
+
+/*
+Prints river information captured in nodes in our binary search tree*/
+void BST::printRiver(BSTNode* n, int upstream, bool mouth, char branch) {
+    if(n == nullptr) {
+        return;
+    }
+    else if (n != nullptr) {
+        printRiver(n->right, upstream + 1, false, 'R');
+        std::cout << std::endl;
+
+        for(int i = 0; i < upstream; i++) {
+            std::cout << "              ";
+        }
+        // if the current node is the mouth of the river
+        if(mouth) {
+            std::cout << "--- ";
+        }
+        else if (branch == 'L') {
+            std::cout << "\\--- ";
+        }
+        // right branch 
+        else {
+            std::cout << "/--- ";
+        }
+        std::cout << n->name << std::endl;
+
+        printRiver(n->left, upstream + 1, false, 'L');
+    } 
 }
