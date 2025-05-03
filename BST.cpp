@@ -49,10 +49,11 @@ Prints the name and description of a node in our BST
 */
 std::string BST::printNodeInfo() {
     if (curr) {
-        std::cout << "\nLocation: " << curr->name << std::endl;
-        std::cout << "Description: " << curr->description << std::endl;
         return "Location: " + curr->name + "\nDescription: " + curr->description;
     }
+    std::cout << "\nLocation: " << curr->name << std::endl;
+    std::cout << "Description: " << curr->description << std::endl;
+
     // curr is nullptr
     return "";
 }
