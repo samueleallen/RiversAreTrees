@@ -21,7 +21,7 @@ private:
     BSTNode* curr;
     std::string getInput();
     void insertNode(BSTNode* n, BSTNode* parent, bool insertLeft);
-    void printRiver(BSTNode* n, int upstream, bool mouth, char branch);
+    void printRiver(BSTNode* node, bool isLeft, std::string indent);
 
 public:
     BST();
