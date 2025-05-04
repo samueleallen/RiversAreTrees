@@ -1,6 +1,8 @@
 #include "BST.hpp"
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <limits>
 
 BSTNode::BSTNode() {
     name = "Default Name";
@@ -180,6 +182,11 @@ void BST::updatePosition() {
             curr = curr->parent;
         }
 
+        // User inserts a new node of their discretion
+        else if (userChoice == "I") {
+            userInsertion();
+        }
+
         // Quit program if user input is 'Q'
         else {
             return;
@@ -205,53 +212,58 @@ std::string BST::navigateRiver() {
 
     // Case 1: User is at the root (mouth of river)
     if (curr == root) {
-        while (userInput != "L" && userInput != "R" && userInput != "Q") {
+        while (userInput != "L" && userInput != "R" && userInput != "Q" && userInput != "I") {
             if (curr->left != nullptr) {
                 std::cout << "Insert (L) to travel to the left and arrive at " << curr->left->name << std::endl;
             }
             if (curr->right != nullptr) {
                 std::cout << "Insert (R) to travel to the right and arrive at " << curr->right->name << std::endl;
             }
+            std::cout << "Insert (I) to create a new location " << std::endl;
             userInput = getInput();
         }
         return userInput;
     } 
     // Case 2: Both children exist
     else if (curr->left != nullptr && curr->right != nullptr) {
-        while (userInput != "L" && userInput != "R" && userInput != "B" && userInput != "Q") {
+        while (userInput != "L" && userInput != "R" && userInput != "B" && userInput != "Q" && userInput != "I") {
             std::cout << "Insert (L) to travel to the left and arrive at " << curr->left->name << std::endl;
             std::cout << "Insert (R) to travel to the right and arrive at " << curr->right->name << std::endl;
             std::cout << "Insert (B) to travel backwards and arrive back at " << curr->parent->name << std::endl;
+            std::cout << "Insert (I) to create a new location " << std::endl;
             userInput = getInput();
         }
         return userInput;
     }
     // Case 3: Only the left child exists
     else if (curr->left != nullptr && curr->right == nullptr) {
-        while (userInput != "L" && userInput != "B" && userInput != "Q") {
+        while (userInput != "L" && userInput != "B" && userInput != "Q" && userInput != "I") {
             std::cout << "Insert (L) to travel to the left and arrive at " << curr->left->name << std::endl;
             std::cout << "Cannot travel right." << std::endl;
             std::cout << "Insert (B) to travel backwards and arrive back at " << curr->parent->name << std::endl;
+            std::cout << "Insert (I) to create a new location " << std::endl;
             userInput = getInput();
         }
         return userInput;
     }
     // Case 4: Only the right child exists
     else if (curr->right != nullptr && curr->left == nullptr) {
-        while (userInput != "R" && userInput != "B" && userInput != "Q") {
+        while (userInput != "R" && userInput != "B" && userInput != "Q" && userInput != "I") {
             std::cout << "Cannot travel left." << std::endl;
             std::cout << "Insert (R) to travel to the right and arrive at " << curr->right->name << std::endl;
             std::cout << "Insert (B) to travel backwards and arrive back at " << curr->parent->name << std::endl;
+            std::cout << "Insert (I) to create a new location " << std::endl;
             userInput = getInput();
         }
         return userInput;
     }
     // Case 5: Both children do not exist
     else {
-        while (userInput != "B" && userInput != "Q") {
+        while (userInput != "B" && userInput != "Q" && userInput != "I") {
             std::cout << "Cannot travel left." << std::endl;
             std::cout << "Cannot travel right." << std::endl;
             std::cout << "Insert (B) to travel backwards and arrive back at " << curr->parent->name << std::endl;
+            std::cout << "Insert (I) to create a new location " << std::endl;
             userInput = getInput(); 
         }
         return userInput;
@@ -279,6 +291,53 @@ void BST::insertNode(BSTNode* n, BSTNode* parent, bool insertLeft) {
         parent->left = n;
     } 
 }
+
+/*
+Asks the user for a name and description for a new node they wish to insert into existing river
+*/
+void BST::userInsertion() {
+    std::string nodeName;
+    std::string nodeDesc;
+    std::string leftOrRight = "";
+    bool isLeft = false;
+    
+    // Fetch user input about node data (Using getLine() in case user's input has spaces that cin won't read)
+    // Have to clear input buffer so we don't have issues with reading newline characters
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    std::cout << "Enter the name of a place you wish to insert: " << std::endl;
+    std::getline(std::cin, nodeName);
+    std::cout << "Enter the description for that place: " << std::endl;
+    std::getline(std::cin, nodeDesc);
+    
+    while (leftOrRight != "R" && leftOrRight != "L") {
+        // Only 3 cases we have to check since we only let a user call this function if they can insert:
+        // Case 1: no children
+        if (getCurr()->right == nullptr && getCurr()->left == nullptr) {
+            std::cout << "Enter 'R' to insert to the right of your current location and 'L' to insert to the left: " << std::endl;
+            leftOrRight = getInput();
+        } 
+        // Case 2: Only right child is null
+        else if (getCurr()->right == nullptr && getCurr()->left != nullptr) {
+            leftOrRight = "R";
+        } 
+        // Case 3: Only left child is null
+        else {
+            leftOrRight = "L";
+        }
+    }
+
+    // If user input is set to be "L", set isLeft to be true, else it remains false
+    if (leftOrRight == "L") {  
+        isLeft = true;
+    }
+
+    BSTNode* userInputNode = new BSTNode(nodeName, nodeDesc);
+
+    // Call insertnode
+    insertNode(userInputNode, getCurr(), isLeft);
+}
+
 
 void BST::printRiver() {
     return printRiver(root, true, "\t"); 
@@ -356,6 +415,7 @@ void BST::setupRiver() {
     BSTNode* river32 = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
     BSTNode* river33 = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
     BSTNode* river34 = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
+    
     // Tributaries before Bonneville Dam
     BSTNode* youngs = new BSTNode("Youngs Tributary", "Length: 43km, Basin Size: 258km^2, Average Discharge: 14.7m^3/s.");
     BSTNode* grays = new BSTNode("Grays Tributary", "Length: 48km, Basin Size: 320km^2, Average Discharge: 15.9m^3/s");
@@ -399,8 +459,16 @@ void BST::setupRiver() {
     BSTNode* nespelem = new BSTNode("Nespelem", "It is completely contained within Okanogan County and the Colville Indian Reservation. The name \"Nespelem\" is said to come from the Indian word nesilim, meaning \"flat land\".");
     BSTNode* sanpoil = new BSTNode("Sanpoil", "The name is from the Okanagan term [snpʕʷílx], meaning \"people of the gray country\", or \"gray as far as one can see\".");
     BSTNode* spokane = new BSTNode("Spokane", "The Spokane River contains some of the highest concentrations of heavy metals of any river in the state, resulting from pollution coming from Lake Coeur D'Alene." );
+    BSTNode* spokane1 = new BSTNode("Spokane", "The Spokane River contains some of the highest concentrations of heavy metals of any river in the state, resulting from pollution coming from Lake Coeur D'Alene." );
+    BSTNode* spokane2 = new BSTNode("Spokane", "The Spokane River contains some of the highest concentrations of heavy metals of any river in the state, resulting from pollution coming from Lake Coeur D'Alene." );
+    BSTNode* spokane3 = new BSTNode("Spokane", "The Spokane River contains some of the highest concentrations of heavy metals of any river in the state, resulting from pollution coming from Lake Coeur D'Alene." );
+    BSTNode* spokane4 = new BSTNode("Spokane", "The Spokane River contains some of the highest concentrations of heavy metals of any river in the state, resulting from pollution coming from Lake Coeur D'Alene." );
 
 
+    BSTNode* little_falls = new BSTNode("Little Falls Dam", " It was listed on the National Register of Historic Places in 1988");
+    BSTNode* long_lake_dam = new BSTNode("Long Lake Dam", "Upon its completion in 1915, Long Lake Dam completely blocked salmon migrations to the upper portions of the Spokane River watershed, although much larger Grand Coulee Dam on the Columbia River extirpated salmon from the entire Spokane basin by 1942");
+    BSTNode* nine_mile_dam = new BSTNode("Nine Mile Dam", "The dam was designed by the New York engineering firm of Sanderson & Porter, and originally constructed to satisfy the power needs of the Spokane and Inland Empire Railroad interurban trolley lines");
+    BSTNode* monroe_street_dam = new BSTNode("Monroe Street Dam", "At completion, it was the largest concrete arch bridge in the U.S. and the third longest in the world");
 
     // Start at mouth of river, go to river only
     insertNode(mouth, nullptr, false);
@@ -511,6 +579,14 @@ void BST::setupRiver() {
     insertNode(sanpoil,river33,false);
     insertNode(river34,river33,true);
 
+    // Lastly, continue from Spokane river to Monroe Street Dam
     insertNode(spokane,river34,true);
-
+    insertNode(little_falls, spokane, false);
+    insertNode(spokane1, little_falls, true);
+    insertNode(long_lake_dam, spokane1, false);
+    insertNode(spokane2, long_lake_dam, true);
+    insertNode(nine_mile_dam, spokane2, false);
+    insertNode(spokane3, nine_mile_dam, true);
+    insertNode(monroe_street_dam, spokane3, false);
+    insertNode(spokane4, monroe_street_dam, true);
 }

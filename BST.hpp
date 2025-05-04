@@ -23,7 +23,7 @@ private:
     void printRiver(BSTNode* n, int upstream, bool mouth, char branch);
     void saveBST(BSTNode* n, std::ofstream& outfile);
     BSTNode* loadBST(std::ifstream& inFile);
-    void insertNode(BSTNode* n, BSTNode* parent, bool insertLeft);
+    void userInsertion();
     void printRiver(BSTNode* node, bool isLeft, std::string indent);
 
 public:
@@ -34,6 +34,7 @@ public:
     // for testing purposes
     void setCurr(BSTNode* node) {curr = node;}
 
+    void insertNode(BSTNode* n, BSTNode* parent, bool insertLeft);
     BSTNode* getRoot() {return root;};
     BSTNode* getCurr() {return curr;};
     bool saveToBinary(const std::string& fileName);

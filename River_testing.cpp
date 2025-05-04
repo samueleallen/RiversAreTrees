@@ -48,36 +48,51 @@ bool test_Info_Print(){
     return true;
 }
 
-
-bool test_Nav_River(){
-
-
-    return false;
-}
-
-bool test_Update_Pos(){
-
-
-    return false;
-}
-
 bool test_Setup(){
+    //Setup
+    BST columbia_river;
 
+    // Execution and Validation
+    columbia_river.setupRiver();
 
+    assert(columbia_river.getCurr() == columbia_river.getRoot()); // Ensure current node is set to root (mouth of river)
+    assert(columbia_river.getCurr()->right == nullptr); // No right child of mouth should be set
+    assert(columbia_river.getCurr()->left != nullptr); // Left child of mouth should be Columbia River
+    assert(columbia_river.getCurr()->left->left != nullptr); // Youngs tributary should be here
+    assert(columbia_river.getCurr()->left->right != nullptr); // Continuation of Columbia River should be here
 
+    // And you could continue on like this for the entire river but we feel like it would be a over-the-top.
 
-    return false;
+    return true;
+}
+
+bool test_insert() {
+    BST test_tree;
+
+    BSTNode* test1 = new BSTNode("Testing node", "test");
+    BSTNode* test2 = new BSTNode("Testing node", "test");
+    BSTNode* test3 = new BSTNode("Testing node", "test");
+
+    // Creates a tree with test1 as root, test2 as left child and test3 as right child
+    test_tree.insertNode(test1, nullptr, true);
+    test_tree.insertNode(test2, test1, true);
+    test_tree.insertNode(test3, test1, false);
+
+    // Ensure root, current are set to be first node inserted.
+    assert(test_tree.getCurr() == test1);
+    assert(test_tree.getRoot() == test1);
+
+    // Ensure left and right nodes are set to be test 2 and test 3
+    assert(test_tree.getCurr()->left == test2);
+    assert(test_tree.getCurr()->right == test3);
+
+    return true;
 }
 
 int main(){
 
     std::cout << "Info Print Test: " <<(test_Info_Print() ? "Passed" : "Failed") << std::endl;
-    test_Nav_River();
-    test_Update_Pos();
-    test_Setup();
-
-
-
-
+    std::cout << "Setup River Test: " << (test_Setup() ? "Passed" : "Failed") << std::endl;
+    std::cout << "Insertion Test: " << (test_insert() ? "Passed" : "Failed") << std::endl;
 
 }
