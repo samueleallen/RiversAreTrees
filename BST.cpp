@@ -281,7 +281,7 @@ void BST::insertNode(BSTNode* n, BSTNode* parent, bool insertLeft) {
 }
 
 void BST::printRiver() {
-    return printRiver(root, 0, true, 'M'); 
+    return printRiver(root, true, "\t"); 
 }
 
 /*
@@ -299,18 +299,18 @@ void BST::printRiver(BSTNode* node, bool isLeft, std::string indent) {
         }
         // the current node is the left child of its parent
         else if(isLeft) {
-            std::cout << "├──";
+            std::cout << "|--";
         }
         // the current node is the right child of its parent
         else {
-            std::cout << "└──";
+            std::cout << "\\__";
         }
         // print the name of the current node
         std::cout << node->name << std::endl;
 
         // recursively call each level of the tree w/ its river information
-        printRiver(node->left, true, indent + (isLeft ? "│   " : "    "));
-        printRiver(node->right, false, indent + (isLeft ? "│   " : "    "));
+        printRiver(node->left, true, indent + (isLeft ? "|   " : "    "));
+        printRiver(node->right, false, indent + (isLeft ? "|   " : "    "));
     }
 }
 
