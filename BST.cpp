@@ -332,11 +332,11 @@ void BST::userInsertion() {
 
 
 void BST::printRiver() {
-    return printRiver(root, true, "\t"); 
+    printRiver(root, true, "\t"); 
 }
 
 /*
-Prints river information captured in nodes in our binary search tree*/
+Prints river information captured in nodes in our binary tree*/
 void BST::printRiver(BSTNode* node, bool isLeft, std::string indent) {
     if(node == nullptr) {
         return;
@@ -345,7 +345,7 @@ void BST::printRiver(BSTNode* node, bool isLeft, std::string indent) {
         std::cout << indent;
 
         // the current node is the mouth of the river
-        if(node == root && isLeft == false) {
+        if(node == root) {
             std::cout << "* ";
         }
         // the current node is the left child of its parent
@@ -450,11 +450,11 @@ void BST::setupRiver() {
     BSTNode* okanogan = new BSTNode("Okanogan", "From Oroville the Okanogan River flows south through the Okanogan County, past Okanogan and Omak. It forms the western boundary of the Colville Indian Reservation.");
     BSTNode* nespelem = new BSTNode("Nespelem", "It is completely contained within Okanogan County and the Colville Indian Reservation. The name \"Nespelem\" is said to come from the Indian word nesilim, meaning \"flat land\".");
     BSTNode* sanpoil = new BSTNode("Sanpoil", "The name is from the Okanagan term [snpʕʷílx], meaning \"people of the gray country\", or \"gray as far as one can see\".");
-    BSTNode* spokane = new BSTNode("Spokane", "The Spokane River contains some of the highest concentrations of heavy metals of any river in the state, resulting from pollution coming from Lake Coeur D'Alene." );
-    BSTNode* spokane1 = new BSTNode("Spokane", "The Spokane River contains some of the highest concentrations of heavy metals of any river in the state, resulting from pollution coming from Lake Coeur D'Alene." );
-    BSTNode* spokane2 = new BSTNode("Spokane", "The Spokane River contains some of the highest concentrations of heavy metals of any river in the state, resulting from pollution coming from Lake Coeur D'Alene." );
-    BSTNode* spokane3 = new BSTNode("Spokane", "The Spokane River contains some of the highest concentrations of heavy metals of any river in the state, resulting from pollution coming from Lake Coeur D'Alene." );
-    BSTNode* spokane4 = new BSTNode("Spokane", "The Spokane River contains some of the highest concentrations of heavy metals of any river in the state, resulting from pollution coming from Lake Coeur D'Alene." );
+    BSTNode* spokane = new BSTNode("Spokane River", "The Spokane River contains some of the highest concentrations of heavy metals of any river in the state, resulting from pollution coming from Lake Coeur D'Alene." );
+    BSTNode* spokane1 = new BSTNode("Spokane River (Continued)", "The Spokane River contains some of the highest concentrations of heavy metals of any river in the state, resulting from pollution coming from Lake Coeur D'Alene." );
+    BSTNode* spokane2 = new BSTNode("Spokane River (Continued)", "The Spokane River contains some of the highest concentrations of heavy metals of any river in the state, resulting from pollution coming from Lake Coeur D'Alene." );
+    BSTNode* spokane3 = new BSTNode("Spokane River (Continued)", "The Spokane River contains some of the highest concentrations of heavy metals of any river in the state, resulting from pollution coming from Lake Coeur D'Alene." );
+    BSTNode* spokane4 = new BSTNode("Spokane River (Continued)", "The Spokane River contains some of the highest concentrations of heavy metals of any river in the state, resulting from pollution coming from Lake Coeur D'Alene." );
 
 
     BSTNode* little_falls = new BSTNode("Little Falls Dam", " It was listed on the National Register of Historic Places in 1988");
