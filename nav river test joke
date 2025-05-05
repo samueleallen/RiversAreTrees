@@ -1,0 +1,65 @@
+
+/*
+    User is at the root (mouth of river)
+User must input either 'L', 'R', or 'Q'
+Both children exist
+User must User must input either 'L', 'R', 'Q', or 'B'
+Only the left child exists
+User must input either 'L', 'B', or 'Q'
+Only the right child exists
+User must input either 'R', 'B', or 'Q'
+No children exist
+User must input either 'B' or 'Q'
+*/
+
+bool test_Nav_River(){
+
+    BST riverTree1, riverTree2, riverTree3, riverTree4, riverTree5, riverTree6;
+
+    std::streambuf* originalCin = std::cin.rdbuf();
+    std::stringstream ss("Q"); // Simulate user typing "q"
+    std::cin.rdbuf(ss.rdbuf());
+
+    BSTNode* mouth = new BSTNode("Columbia River Mouth", "Pacific Ocean, at Clatsop County, Oregon / Pacific County, Washington");
+    BSTNode* bonneville_dam = new BSTNode("Bonneville Dam", "At the time of its construction in the 1930s it was the largest water impoundment project of its type in the nation, able to withstand flooding on an unprecedented scale");
+    BSTNode* white_salmon = new BSTNode("White Salmon Tributary", "Originating on the slopes of Mount Adams, it flows into the Columbia Gorge near the community of Underwood.");
+    BSTNode* river_contd = new BSTNode("Columbia River (Continued)", "Fun fact: it is the largest river by volume flowing into the Pacific Ocean from North America");
+    mouth->right = bonneville_dam;
+
+    bonneville_dam->parent = mouth;
+
+
+    riverTree1.setCurr(bonneville_dam);
+
+    std::string result1 = riverTree1.navigateRiver();
+    
+    assert(result1 == "Q");
+    std::cin.rdbuf(originalCin); // Restore cin
+
+    originalCin = std::cin.rdbuf();
+    ss << "R"; // Simulate user typing "r"
+    std::cin.rdbuf(ss.rdbuf());
+
+    //BSTNode* mouth = new BSTNode("Columbia River Mouth", "Pacific Ocean, at Clatsop County, Oregon / Pacific County, Washington");
+    //BSTNode* bonneville_dam = new BSTNode("Bonneville Dam", "At the time of its construction in the 1930s it was the largest water impoundment project of its type in the nation, able to withstand flooding on an unprecedented scale");
+    mouth->right = bonneville_dam;
+    bonneville_dam->parent = mouth;
+
+    riverTree2.setCurr(mouth);
+    std::string result2 = riverTree2.navigateRiver();
+    std :: cout << "test";
+    assert(result2 == "R");
+
+    std::cin.rdbuf(originalCin); // Restore cin
+
+
+
+
+
+
+
+    delete bonneville_dam;
+    delete mouth;
+
+    return true;
+}
