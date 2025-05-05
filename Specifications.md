@@ -1,6 +1,6 @@
 # Rivers Are Trees
 
-## Specifications
+## Program Specifications
 
 ### Feature:
 printNodeInfo()
@@ -59,24 +59,7 @@ Calls navigateRiver() and updates current position based on if user entered:
  * R: move to the right subtree
  * B: move to the parent node
  * Q: quit the program
-### Feature:
-insertNode()
-#### Purpose:
-Inserts a node into our binary search tree at a specific location.
-#### Assumptions:
-A binary search tree exists
-#### Inputs:
-Pointer to a node to be inserted, pointer to a parent node, and a boolean value representing if the node is to be inserted to the left or right
-#### Outputs:
-none
-#### State Changes:
-A new node will be inserted into the BST.
-#### Expected Cases & Behaviors:
- * If the passed node pointer is null, return nullptr.
- * If the root is nullptr, set the passed node to be our new root
- * If the boolean value tells us to insert to the left and the parent's left subtree is empty, insert the node to the left of the parent. 
- * If the boolean value tells us to insert to the right and the parent's lright subtree is empty, insert the node to the right of the parent. 
- * Else, return.
+
 ### Feature:
 setupRiver()
 #### Purpose:
@@ -180,3 +163,22 @@ If the node is not null: reads the name and description and creates a new BSTNod
    * Then recursively calls loadBST on the left subtree. Next, it assigns the result to the new node's left pointer. If the left child is not nullptr, we set its parent pointer to the current node.
    * Then recursively calls loadBST on the right subtree. Next, it assigns the result to the new node's right pointer. If the right child is not nullptr, we set its parent pointer to the current node.
 
+## Class Specifications
+### Feature:
+insertNode()
+#### Purpose:
+Inserts a node into our binary search tree at a specific location.
+#### Assumptions:
+A binary search tree exists
+#### Inputs:
+Pointer to a node to be inserted, pointer to a parent node, and a boolean value representing if the node is to be inserted to the left or right
+#### Outputs:
+none
+#### State Changes:
+A new node will be inserted into the BST.
+#### Expected Cases & Behaviors:
+ * If the passed node pointer is null, return nullptr.
+ * If the root is nullptr, set the passed node to be our new root
+ * If the boolean value tells us to insert to the left and the parent's left subtree is empty, insert the node to the left of the parent. 
+ * If the boolean value tells us to insert to the right and the parent's lright subtree is empty, insert the node to the right of the parent. 
+ * Else, return.
