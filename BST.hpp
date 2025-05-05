@@ -20,7 +20,6 @@ private:
     BSTNode* root;
     BSTNode* curr;
     std::string getInput();
-    void printRiver(BSTNode* n, int upstream, bool mouth, char branch);
     void saveBST(BSTNode* n, std::ofstream& outfile);
     BSTNode* loadBST(std::ifstream& inFile);
     void userInsertion();
@@ -39,7 +38,7 @@ public:
     BSTNode* getCurr() {return curr;};
     bool saveToBinary(const std::string& fileName);
     bool loadFromBinary(const std::string& fileName);
-    std::string printNodeInfo();
+    void printNodeInfo();
     void setupRiver();
     void printRiver();
     void updatePosition();

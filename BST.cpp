@@ -49,15 +49,9 @@ std::string BST::getInput(){
 /*
 Prints the name and description of a node in our BST
 */
-std::string BST::printNodeInfo() {
-    if (curr) {
-        return "Location: " + curr->name + "\nDescription: " + curr->description;
-    }
+void BST::printNodeInfo() {
     std::cout << "Location: " << curr->name << std::endl;
     std::cout << "Description: " << curr->description << std::endl;
-
-    // curr is nullptr
-    return "";
 }
 
 /*
@@ -200,14 +194,12 @@ Navigates through the river based on user's input from menu
 */
 std::string BST::navigateRiver() {
     std::string userInput;
-    
+    printNodeInfo();
     if (curr == nullptr) {
         std::cout << "Error: Current Node is null" << std::endl;
         return "Q";
     }
 
-    // Print current node info
-    printNodeInfo();
     std::cout << "Enter 'Q' to quit at anytime." << std::endl;
 
     // Case 1: User is at the root (mouth of river)
