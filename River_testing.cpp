@@ -1,7 +1,7 @@
 #include "BT.hpp"
 #include <cassert>
 
-bool test_Info_Print(){
+bool testInfoPrint(){
     // test cases: mouth is current node, dam is current node, tributary is current node, continuation of the Columbia river is current node
     BT riverTree1, riverTree2, riverTree3, riverTree4;
 
@@ -40,7 +40,7 @@ bool test_Info_Print(){
     return true;
 }
 
-bool test_Setup(){
+bool testSetup(){
     //Setup
     BT columbia_river;
 
@@ -58,33 +58,33 @@ bool test_Setup(){
     return true;
 }
 
-bool test_insert() {
-    BT test_tree;
+bool testInsert() {
+    BT testTree;
 
     BTNode* test1 = new BTNode("Testing node", "test");
     BTNode* test2 = new BTNode("Testing node", "test");
     BTNode* test3 = new BTNode("Testing node", "test");
 
     // Creates a tree with test1 as root, test2 as left child and test3 as right child
-    test_tree.insertNode(test1, nullptr, true);
-    test_tree.insertNode(test2, test1, true);
-    test_tree.insertNode(test3, test1, false);
+    testTree.insertNode(test1, nullptr, true);
+    testTree.insertNode(test2, test1, true);
+    testTree.insertNode(test3, test1, false);
 
     // Ensure root, current are set to be first node inserted.
-    assert(test_tree.getCurr() == test1);
-    assert(test_tree.getRoot() == test1);
+    assert(testTree.getCurr() == test1);
+    assert(testTree.getRoot() == test1);
 
     // Ensure left and right nodes are set to be test 2 and test 3
-    assert(test_tree.getCurr()->left == test2);
-    assert(test_tree.getCurr()->right == test3);
+    assert(testTree.getCurr()->left == test2);
+    assert(testTree.getCurr()->right == test3);
 
     return true;
 }
 
 int main(){
 
-    std::cout << "Info Print Test: " <<(test_Info_Print() ? "Passed" : "Failed") << std::endl;
-    std::cout << "Setup River Test: " << (test_Setup() ? "Passed" : "Failed") << std::endl;
-    std::cout << "Insertion Test: " << (test_insert() ? "Passed" : "Failed") << std::endl;
+    std::cout << "Info Print Test: " <<(testInfoPrint() ? "Passed" : "Failed") << std::endl;
+    std::cout << "Setup River Test: " << (testSetup() ? "Passed" : "Failed") << std::endl;
+    std::cout << "Insertion Test: " << (testInsert() ? "Passed" : "Failed") << std::endl;
 
 }
