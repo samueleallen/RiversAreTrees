@@ -6,14 +6,14 @@ CPSC 223
 ## main.cpp
 To execute the main file, please run the commands:
 ```
-g++ -std=c++11 main.cpp BST.cpp -o main
+g++ -std=c++11 main.cpp BT.cpp -o main
 ./main
 ```
 
 ## River_testing.cpp
 To execute the testing file, please run the commands:
 ```
-g++ -std=c++11 River_testing.cpp BST.cpp -o test_river
+g++ -std=c++11 River_testing.cpp BT.cpp -o test_river
 ./test_river
 ```
 
