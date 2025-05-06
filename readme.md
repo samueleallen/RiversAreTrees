@@ -1,6 +1,6 @@
 # Rivers Are Trees
 
-Authors: Alex, Kaili, Xavier, & Sam
+Authors: Alex, Kaili, Xavier, & Sam  
 CPSC 223  
 
 ## main.cpp
