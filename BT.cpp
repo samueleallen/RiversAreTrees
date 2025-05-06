@@ -21,7 +21,11 @@ BTNode::BTNode(std::string inputName, std::string inputDesc) {
 }
 
 BTNode::~BTNode() {
-
+    delete left;
+    delete right;
+    left = nullptr;
+    right = nullptr;
+    parent = nullptr;
 }
 
 BT::BT() {
@@ -35,7 +39,9 @@ BT::BT(BTNode* root) {
 }
 
 BT::~BT() {
-
+    delete root;
+    root = nullptr;
+    curr = nullptr;
 }
 
 std::string BT::getInput(){
